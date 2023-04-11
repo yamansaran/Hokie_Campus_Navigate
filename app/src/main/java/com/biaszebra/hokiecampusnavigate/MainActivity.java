@@ -57,15 +57,15 @@ public class MainActivity extends AppCompatActivity {
                 String str = sc.nextLine();
                 String[] res = str.split("[,]", 0);
                 table.add(res);
-                System.out.println(res[0]+" "+res[1]+" "+res[2] + " added to table");
+                //System.out.println(res[0]+" "+res[1]+" "+res[2] + " added to table");
             }
         }
         String testTest = runner.startRun(locationString,destinationString, is);
-        System.out.println(testTest + "~~~~~~~~~~~~~");
+        //System.out.println(testTest + "~~~~~~~~~~~~~");
         testTest= testTest.replaceAll("\\s", "");
         testTest= testTest.replaceAll("\\[", "");
         testTest= testTest.replaceAll("\\]", "");
-        System.out.println(testTest + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        //System.out.println(testTest + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         pathView.setText(testTest);
         //TODO
         /*
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         Bitmap newBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_graph_cropped);
         Bitmap myBitmap = Bitmap.createScaledBitmap(newBitmap, customView.getWidth(), customView.getHeight(), true);
         //Bitmap myBitmap = ((BitmapDrawable)customView.getDrawable()).getBitmap();
-        System.out.println(myBitmap.getHeight());
+        //System.out.println(myBitmap.getHeight());
         Bitmap tempBitmap = myBitmap.copy(myBitmap.getConfig(), true);
         //Bitmap tempBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_graph_cropped);
         Canvas tempCanvas = new Canvas(tempBitmap);
@@ -101,17 +101,17 @@ public class MainActivity extends AppCompatActivity {
         //System.out.println(res[0] + " " + res[3]);
         //ArrayList<Integer> temp = returnCor(res[0]); //TODO do this
         for(int i = 0; i < res.length;i++){
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+res[i]);
+            //System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+res[i]);
             if(i==(res.length-1)){
 
             }else{
-                System.out.println("PAINTPAINTPAINT");
+                //System.out.println("PAINTPAINTPAINT");
                 ArrayList<Integer> coorCurrent = returnCor(res[i],table);
                 ArrayList<Integer> coorNext = returnCor(res[i+1],table);
                 int xdim = tempBitmap.getWidth();
                 int ydim = tempBitmap.getHeight();
-                System.out.println(xdim + "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% " + ydim);
-                System.out.println(coreXDim + "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% " + coreYDim);
+                //System.out.println(xdim + "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% " + ydim);
+                //System.out.println(coreXDim + "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% " + coreYDim);
 
 
 
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 //double xcorRatio = xcor/1393;
                 float xcorRatio = (float) xcor/1393;
 
-                System.out.println(xcorRatio +"RATIOTATI~~~~~~~~~~~~~~~~~~~~~RATIO");
+                //System.out.println(xcorRatio +"RATIOTATI~~~~~~~~~~~~~~~~~~~~~RATIO");
                 //double ycorRatio = ycor/1692;
                 float ycorRatio = (float) ycor/1692;
 
@@ -174,8 +174,8 @@ public class MainActivity extends AppCompatActivity {
 
                 list.set(0, xcor);
                 list.set(1, (ycor));
-                System.out.println(source + " is equal to " + table.get(i)[0]);
-                System.out.println(xcor+"_"+ycor);
+                //System.out.println(source + " is equal to " + table.get(i)[0]);
+                //System.out.println(xcor+"_"+ycor);
             }
         }
         return list;

@@ -41,10 +41,10 @@ public class TestWithSampleGraph {
 
     CSVReader csvReader = new CSVReader(is);
     csvReader.CSVIni();
-    System.out.println(csvReader.entries);
+    //System.out.println(csvReader.entries);
 
     ValueGraph<String, Integer> graph = createSampleGraph(csvReader);
-    System.out.println("graph = " + graph);
+    //System.out.println("graph = " + graph);
 
     findAndPrintShortestPath(graph, "A","D");
     findAndPrintShortestPath(graph, "A","J");
@@ -73,7 +73,7 @@ public class TestWithSampleGraph {
   private static void findAndPrintShortestPath(
           ValueGraph<String, Integer> graph, String source, String target) {
     List<String> shortestPath = DijkstraWithPriorityQueue.findShortestPath(graph, source, target);
-    System.out.printf("shortestPath from %s to %s = %s%n", source, target, shortestPath);
+    //System.out.printf("shortestPath from %s to %s = %s%n", source, target, shortestPath);
   }
   private static List<String> sendShortestPath(
           ValueGraph<String, Integer> graph, String source, String target) {
