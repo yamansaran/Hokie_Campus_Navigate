@@ -10,11 +10,11 @@ Pulls used:
   
   Internal data files:
   
-    drawable/simple_graphed_cropped
+    drawable/simple_graphed_cropped.png
     
-    res/raw/node_map
+    res/raw/node_map.txt
     
-    res/raw/sample_table
+    res/raw/sample_table.txt
    
 Txt format:
 
