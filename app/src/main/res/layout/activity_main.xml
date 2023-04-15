@@ -8,6 +8,8 @@
     android:background="@color/orange"
     >
 
+
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -26,9 +28,9 @@
 
     <com.jsibbold.zoomage.ZoomageView
         android:id="@+id/myZoomageView"
-        android:layout_width="408dp"
-        android:layout_height="486dp"
-        android:src="@drawable/sample_graph_cropped"
+        android:layout_width="416dp"
+        android:layout_height="491dp"
+        android:src="@drawable/vt_campus_map_enlarged"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.551"
@@ -37,12 +39,14 @@
         app:layout_constraintVertical_bias="1.0"
         app:zoomage_animateOnReset="true"
         app:zoomage_autoCenter="true"
-        app:zoomage_autoResetMode="UNDER"
+        app:zoomage_autoResetMode="OVER"
         app:zoomage_maxScale="8"
         app:zoomage_minScale="0.6"
-        app:zoomage_restrictBounds="false"
+        app:zoomage_restrictBounds="true"
         app:zoomage_translatable="true"
-        app:zoomage_zoomable="true" />
+        app:zoomage_zoomable="true"
+
+        />
 
     <TextView
         android:id="@+id/pathView"
@@ -56,22 +60,22 @@
 
     <Button
         android:id="@+id/sendIt"
-        android:layout_width="102dp"
-        android:layout_height="106dp"
+        android:layout_width="88dp"
+        android:layout_height="86dp"
         android:onClick="onBtnClick"
         android:text="Hokie\nPath!"
         android:theme="@style/Button.Maroon"
         app:layout_constraintBottom_toTopOf="@+id/myZoomageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115" />
+        app:layout_constraintVertical_bias="0.111" />
 
     <EditText
         android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="198dp"
+        android:layout_height="39dp"
         android:layout_marginTop="28dp"
         android:autofillHints=""
         android:ems="10"
@@ -79,26 +83,24 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/myZoomageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toEndOf="@+id/sendIt"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/destination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="198dp"
+        android:layout_height="42dp"
         android:ems="10"
         android:hint="Where are you headed?"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/myZoomageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.904"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toEndOf="@+id/sendIt"
         app:layout_constraintTop_toBottomOf="@+id/location"
-        app:layout_constraintVertical_bias="0.014" />
-
-    
+        app:layout_constraintVertical_bias="0.017" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,6 +29,12 @@ import java.util.Scanner;
 
 
 public class MainActivity extends AppCompatActivity {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
 
     private int coreXDim = 1393;//TODO remove hard coding
     private int coreYDim = 1692;
@@ -72,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         //customView.onDrawCo( 0,0,100,100, canvas);
         //Bitmap myBitmap = BitmapFactory.decodeFile("res/drawable/simple_node_map_shrunk.png");
 
-        Bitmap newBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_graph_cropped);//replacing image with copy image that will be painted on
+        Bitmap newBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vt_campus_map_enlarged);//replacing image with copy image that will be painted on
         Bitmap myBitmap = Bitmap.createScaledBitmap(newBitmap, customView.getWidth(), customView.getHeight(), true);//I do not know why this is here, but it wont work without  copy of a copy
         //Bitmap myBitmap = ((BitmapDrawable)customView.getDrawable()).getBitmap();
         //System.out.println(myBitmap.getHeight());

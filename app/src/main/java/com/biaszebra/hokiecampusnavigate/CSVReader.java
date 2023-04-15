@@ -31,6 +31,7 @@ public class CSVReader {
 				String str = sc.nextLine();
 				System.out.println(str);
 				entries++;
+				System.out.println(str+"`````````````````````````````````````````````````````");
 				String[] res = str.split("[,]", 0);
 				name1.add(res[0]);
 				name2.add(res[1]);
