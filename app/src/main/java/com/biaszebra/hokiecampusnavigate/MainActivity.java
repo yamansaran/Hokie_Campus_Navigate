@@ -1,5 +1,6 @@
 package com.biaszebra.hokiecampusnavigate;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
@@ -11,17 +12,19 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.jsibbold.zoomage.ZoomageView;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -29,11 +32,40 @@ import java.util.Scanner;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    boolean accessibility = false;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.item1:
+                Toast.makeText(this, "Item 1 selected", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.item2:
+                Toast.makeText(this, "Accessibility Mode enabled", Toast.LENGTH_SHORT).show();
+                try {
+                    accessibilityMode();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                return true;
+            case R.id.item3:
+                Toast.makeText(this, "Item 3 selected", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+    public void accessibilityMode() throws IOException {
+       accessibility = !accessibility;
+
     }
 
     private int coreXDim = 1393;//TODO remove hard coding
@@ -49,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBtnClick(View view){
+        //System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa"+accessibility);
         ZoomageView customView = findViewById(R.id.myZoomageView);
         TextView pathView = findViewById(R.id.pathView);
         TestWithSampleGraph runner = new TestWithSampleGraph();//create path generator
