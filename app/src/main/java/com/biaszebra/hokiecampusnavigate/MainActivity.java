@@ -99,12 +99,12 @@ public class MainActivity extends AppCompatActivity {
 
         boolean loc = !doesExist(locationString);
         boolean dest = !doesExist(destinationString);
-        System.out.println(locationString + loc+destinationString+dest+"============================");
+
         if(loc||dest){
-            System.out.println("ending");
+
             Toast.makeText(this, "That location doesn not exist!", Toast.LENGTH_SHORT).show();
         }else{
-        System.out.println("proceeding");
+
         InputStream is;
         InputStream is2;
         if (accessibility) {
@@ -189,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
                 yNext = scalingMod(coreYDim, ydim, yNext);
 
                 tempCanvas.drawLine(xCur, yCur, xNext, yNext, p);
+                tempCanvas.drawCircle((float)xNext,(float)yNext,(float)3,p);
             }
         }
 
