@@ -5,8 +5,9 @@ Dependencies used:
   
   Zoomage 1.3.1
 
-Pulls used: 
-  pathfinding by SvenWoltmann
+Pull: 
+ 
+ pathfinding by SvenWoltmann
   
   Android Tiramisu (SDK 33)
   
