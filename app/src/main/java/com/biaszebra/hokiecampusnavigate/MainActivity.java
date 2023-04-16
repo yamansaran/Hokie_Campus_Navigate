@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.jsibbold.zoomage.ZoomageView;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -48,9 +49,14 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Item 1 selected", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.item2:
-                Toast.makeText(this, "Accessibility Mode enabled", Toast.LENGTH_SHORT).show();
+
                 try {
                     accessibilityMode();
+                    if(accessibility) {
+                        Toast.makeText(this, "Accessibility Mode enabled", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(this, "Accessibility Mode disabled", Toast.LENGTH_SHORT).show();
+                    }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -68,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private int coreXDim = 1393;//TODO remove hard coding
-    private int coreYDim = 1692;
+    private int coreXDim = 2876;//TODO remove hard coding
+    private int coreYDim = 3437;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         //coreYDim = customView.getHeight();
     }
 
-    public void onBtnClick(View view){
+    public void onBtnClick(View view) {
         //System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa"+accessibility);
         ZoomageView customView = findViewById(R.id.myZoomageView);
         TextView pathView = findViewById(R.id.pathView);
@@ -89,10 +95,32 @@ public class MainActivity extends AppCompatActivity {
         String locationString = location.getText().toString();
         EditText destination = findViewById(R.id.destination);
         String destinationString = destination.getText().toString();
-        InputStream is = this.getResources().openRawResource(R.raw.node_map);//NOTE MAP LOCATION
 
+
+        boolean loc = !doesExist(locationString);
+        boolean dest = !doesExist(destinationString);
+        System.out.println(locationString + loc+destinationString+dest+"============================");
+        if(loc||dest){
+            System.out.println("ending");
+            Toast.makeText(this, "That location doesn not exist!", Toast.LENGTH_SHORT).show();
+        }else{
+        System.out.println("proceeding");
+        InputStream is;
+        InputStream is2;
+        if (accessibility) {
+            is = this.getResources().openRawResource(R.raw.node_map_acc);//NOTE MAP LOCATION
+        } else {
+            is = this.getResources().openRawResource(R.raw.node_map);
+        }
         ArrayList<String[]> table = new ArrayList<>();//table to hold point information
-        InputStream is2 = this.getResources().openRawResource(R.raw.sample_table);//point coordinate data file
+
+        if (accessibility) {
+            is2 = this.getResources().openRawResource(R.raw.sample_table_acc);//point coordinate data file
+        } else {
+            is2 = this.getResources().openRawResource(R.raw.sample_table);
+        }
+
+
         try (Scanner sc = new Scanner(is2, StandardCharsets.UTF_8.name())) {
             while (sc.hasNextLine()) {
                 String str = sc.nextLine();
@@ -101,11 +129,11 @@ public class MainActivity extends AppCompatActivity {
                 //System.out.println(res[0]+" "+res[1]+" "+res[2] + " added to table");
             }
         }
-        String testTest = runner.startRun(locationString,destinationString, is);//find path
+        String testTest = runner.startRun(locationString, destinationString, is);//find path
         //System.out.println(testTest + "~~~~~~~~~~~~~");
-        testTest= testTest.replaceAll("\\s", "");//filter output path
-        testTest= testTest.replaceAll("\\[", "");
-        testTest= testTest.replaceAll("\\]", "");
+        testTest = testTest.replaceAll("\\s", "");//filter output path
+        testTest = testTest.replaceAll("\\[", "");
+        testTest = testTest.replaceAll("\\]", "");
         //System.out.println(testTest + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         pathView.setText(testTest);//show path in pathView
 
@@ -124,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         Paint p = new Paint();//route paint, edit here
         p.setColor(Color.RED);
-        p.setStrokeWidth(15);
+        p.setStrokeWidth(8);
 
         Paint explorer = new Paint();//TODO remove explorer line
         explorer.setColor(Color.BLACK);
@@ -136,39 +164,39 @@ public class MainActivity extends AppCompatActivity {
         String[] res = testTest.split("[,]", 0);//array of steps along path
         //System.out.println(res[0] + " " + res[3]);
         //ArrayList<Integer> temp = returnCor(res[0]);
-        for(int i = 0; i < res.length;i++){//loop to paint lines along map
+        for (int i = 0; i < res.length; i++) {//loop to paint lines along map
             //System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+res[i]);
-            if(i==(res.length-1)){
+            if (i == (res.length - 1)) {
 
-            }else{
+            } else {
                 //System.out.println("PAINTPAINTPAINT");
-                ArrayList<Integer> coorCurrent = returnCor(res[i],table);
-                ArrayList<Integer> coorNext = returnCor(res[i+1],table);
+                ArrayList<Integer> coorCurrent = returnCor(res[i], table);
+                ArrayList<Integer> coorNext = returnCor(res[i + 1], table);
                 int xdim = tempBitmap.getWidth();
                 int ydim = tempBitmap.getHeight();
                 //System.out.println(xdim + "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% " + ydim);
                 //System.out.println(coreXDim + "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% " + coreYDim);
 
 
+                int xCur = (int) (coorCurrent.get(0));//paint start and end point
+                int yCur = (int) (coorCurrent.get(1));
+                int xNext = (int) (coorNext.get(0));
+                int yNext = (int) (coorNext.get(1));
 
-                int xCur = (int)(coorCurrent.get(0));//paint start and end point
-                int yCur = (int)(coorCurrent.get(1));
-                int xNext = (int)(coorNext.get(0));
-                int yNext = (int)(coorNext.get(1));
+                xCur = scalingMod(coreXDim, xdim, xCur);//scaled to make up for different screen resolutions
+                yCur = scalingMod(coreYDim, ydim, yCur);
+                xNext = scalingMod(coreXDim, xdim, xNext);
+                yNext = scalingMod(coreYDim, ydim, yNext);
 
-                xCur = scalingMod(coreXDim,xdim,xCur);//scaled to make up for different screen resolutions
-                yCur = scalingMod(coreYDim,ydim,yCur);
-                xNext = scalingMod(coreXDim,xdim,xNext);
-                yNext = scalingMod(coreYDim,ydim,yNext);
-
-                tempCanvas.drawLine(xCur,yCur,xNext,yNext,p);
+                tempCanvas.drawLine(xCur, yCur, xNext, yNext, p);
             }
         }
 
-        returnCor("A",table);
+        returnCor("A", table);
 
 
         customView.setImageDrawable(new BitmapDrawable(getResources(), tempBitmap));
+    }
     }
 
     public Double doubleDivision(Double x, Double y) {//real division
@@ -199,11 +227,11 @@ public class MainActivity extends AppCompatActivity {
 
                 //relative scaling
                 //double xcorRatio = xcor/1393;
-                float xcorRatio = (float) xcor/1393;
+                float xcorRatio = (float) xcor/2876;
 
                 //System.out.println(xcorRatio +"RATIOTATI~~~~~~~~~~~~~~~~~~~~~RATIO");
                 //double ycorRatio = ycor/1692;
-                float ycorRatio = (float) ycor/1692;
+                float ycorRatio = (float) ycor/3437;
 
                 Double xRatio = (double) xcorRatio;
                 Double yRatio = (double) ycorRatio;
@@ -215,5 +243,23 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return list;
+    }
+    public boolean doesExist(String string){
+        InputStream is = this.getResources().openRawResource(R.raw.sample_table);
+        boolean bool = false;
+
+        try (Scanner sc = new Scanner(is, StandardCharsets.UTF_8.name())) {
+            while (sc.hasNextLine()) {
+                String str = sc.nextLine();
+                String[] res = str.split("[,]", 0);
+                if(res[0].equals(string)){
+                    bool = true;
+                }
+
+            }
+        }
+
+
+        return bool;
     }
 }
