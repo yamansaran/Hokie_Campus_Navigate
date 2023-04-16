@@ -23,6 +23,6 @@ Txt format:
 
   node map: Node,neighborNode,edgeCost
   
-  sample_table: Node,XCoordinates(as pixels along image dimension),YCoordinates(as pixels along image dimension)
+  sample table: Node,XCoordinates(as pixels along image dimension),YCoordinates(as pixels along image dimension)
   
   
