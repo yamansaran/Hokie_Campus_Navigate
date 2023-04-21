@@ -8,13 +8,13 @@
 
     <item android:id="@+id/item2"
 
-        android:title="Accessibility mode"
+        android:title="Accessibility Mode"
         android:icon="@drawable/options"
 
         app:showAsAction="never"/>
 
     <item android:id="@+id/item3"
-        android:title="Jorn Mode"
+        android:title="In A Hurry Mode"
         app:showAsAction="never"/>
 
 

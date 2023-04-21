@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Hokie Campus Navigate!</string>
+
+    <string-array
+        name="completion">
+        <item>McComas</item>
+        <item>McBird</item>
+        <item>Godwin</item>
+        <item>Randolf</item>
+        <item>Holden</item>
+        <item>Perry Lot 1</item>
+        <item>Perry Lot 2</item>
+        <item>Perry Lot 3</item>
+        <item>Surge</item>
+
+    </string-array>
+
 </resources>

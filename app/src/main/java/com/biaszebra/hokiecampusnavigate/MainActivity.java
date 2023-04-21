@@ -3,6 +3,7 @@ package com.biaszebra.hokiecampusnavigate;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,11 +15,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.jsibbold.zoomage.ZoomageView;
 
 import java.io.File;
@@ -35,6 +39,7 @@ import java.util.Scanner;
 public class MainActivity extends AppCompatActivity {
 
     boolean accessibility = false;
+    boolean hurry = false;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -62,7 +67,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             case R.id.item3:
-                Toast.makeText(this, "Item 3 selected", Toast.LENGTH_SHORT).show();
+                hurryMode();
+                if(hurry) {
+                    Toast.makeText(this, "\"In A Hurry\" Mode enabled", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(this, "\"In A Hurry\" Mode disabled", Toast.LENGTH_SHORT).show();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -73,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
        accessibility = !accessibility;
 
     }
+    public void hurryMode(){
+        hurry = !hurry;
+    }
 
     private int coreXDim = 2876;//TODO remove hard coding
     private int coreYDim = 3437;
@@ -80,22 +93,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("");
         setContentView(R.layout.activity_main);
-        //ZoomageView customView = findViewById(R.id.myZoomageView);
-        //coreXDim = customView.getWidth();
-        //coreYDim = customView.getHeight();
+        Resources res = getResources();
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, res.getStringArray(R.array.completion));
+        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.value1);
+        textView.setAdapter(adapter);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, res.getStringArray(R.array.completion));
+        AutoCompleteTextView textView2 = (AutoCompleteTextView) findViewById(R.id.value2);
+        textView2.setAdapter(adapter);
     }
 
     public void onBtnClick(View view) {
-        //System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa"+accessibility);
         ZoomageView customView = findViewById(R.id.myZoomageView);
-        TextView pathView = findViewById(R.id.pathView);
         TestWithSampleGraph runner = new TestWithSampleGraph();//create path generator
-        EditText location = findViewById(R.id.location);
-        String locationString = location.getText().toString();
-        EditText destination = findViewById(R.id.destination);
-        String destinationString = destination.getText().toString();
 
+
+
+
+        AutoCompleteTextView locationText =findViewById(R.id.value1);
+        AutoCompleteTextView destinationText =findViewById(R.id.value2);
+
+        //String locationString = location.getText().toString();
+        //String destinationString = destination.getText().toString();
+        String locationString = locationText.getText().toString();
+        String destinationString = destinationText.getText().toString();
 
         boolean loc = !doesExist(locationString);
         boolean dest = !doesExist(destinationString);
@@ -110,7 +132,11 @@ public class MainActivity extends AppCompatActivity {
         if (accessibility) {
             is = this.getResources().openRawResource(R.raw.node_map_acc);//NOTE MAP LOCATION
         } else {
-            is = this.getResources().openRawResource(R.raw.node_map);
+            if(hurry) {
+                is = this.getResources().openRawResource(R.raw.node_map_quick);
+            }else{
+                is = this.getResources().openRawResource(R.raw.node_map);
+            }
         }
         ArrayList<String[]> table = new ArrayList<>();//table to hold point information
 
@@ -126,27 +152,17 @@ public class MainActivity extends AppCompatActivity {
                 String str = sc.nextLine();
                 String[] res = str.split("[,]", 0);
                 table.add(res);
-                //System.out.println(res[0]+" "+res[1]+" "+res[2] + " added to table");
             }
         }
         String testTest = runner.startRun(locationString, destinationString, is);//find path
-        //System.out.println(testTest + "~~~~~~~~~~~~~");
         testTest = testTest.replaceAll("\\s", "");//filter output path
         testTest = testTest.replaceAll("\\[", "");
         testTest = testTest.replaceAll("\\]", "");
-        //System.out.println(testTest + "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        pathView.setText(testTest);//show path in pathView
 
-
-        //customView.onDrawCo( 0,0,100,100, canvas);
-        //Bitmap myBitmap = BitmapFactory.decodeFile("res/drawable/simple_node_map_shrunk.png");
 
         Bitmap newBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vt_campus_map_enlarged);//replacing image with copy image that will be painted on
         Bitmap myBitmap = Bitmap.createScaledBitmap(newBitmap, customView.getWidth(), customView.getHeight(), true);//I do not know why this is here, but it wont work without  copy of a copy
-        //Bitmap myBitmap = ((BitmapDrawable)customView.getDrawable()).getBitmap();
-        //System.out.println(myBitmap.getHeight());
         Bitmap tempBitmap = myBitmap.copy(myBitmap.getConfig(), true);//copy as previous bitmaps are immutable
-        //Bitmap tempBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_graph_cropped);
         Canvas tempCanvas = new Canvas(tempBitmap);
         tempCanvas.drawBitmap(myBitmap, 0, 0, null);
 
@@ -158,25 +174,17 @@ public class MainActivity extends AppCompatActivity {
         explorer.setColor(Color.BLACK);
         explorer.setStrokeWidth(3);
 
-        //tempCanvas.drawLine(0,0,tempBitmap.getWidth(),tempBitmap.getHeight(),explorer);//Explorer line to span image
-        //tempCanvas.drawLine(1000,1000,2000,1000,p);
-        //tempCanvas.drawLine(2000,1000,1500,1600,p);
+
         String[] res = testTest.split("[,]", 0);//array of steps along path
-        //System.out.println(res[0] + " " + res[3]);
-        //ArrayList<Integer> temp = returnCor(res[0]);
+
         for (int i = 0; i < res.length; i++) {//loop to paint lines along map
-            //System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+res[i]);
             if (i == (res.length - 1)) {
 
             } else {
-                //System.out.println("PAINTPAINTPAINT");
                 ArrayList<Integer> coorCurrent = returnCor(res[i], table);
                 ArrayList<Integer> coorNext = returnCor(res[i + 1], table);
                 int xdim = tempBitmap.getWidth();
                 int ydim = tempBitmap.getHeight();
-                //System.out.println(xdim + "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% " + ydim);
-                //System.out.println(coreXDim + "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% " + coreYDim);
-
 
                 int xCur = (int) (coorCurrent.get(0));//paint start and end point
                 int yCur = (int) (coorCurrent.get(1));
@@ -194,8 +202,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         returnCor("A", table);
-
-
         customView.setImageDrawable(new BitmapDrawable(getResources(), tempBitmap));
     }
     }
@@ -226,12 +232,8 @@ public class MainActivity extends AppCompatActivity {
                 xcor = Integer.valueOf(table.get(i)[1]);
                 ycor = Integer.valueOf(table.get(i)[2]);
 
-                //relative scaling
-                //double xcorRatio = xcor/1393;
-                float xcorRatio = (float) xcor/2876;
+                float xcorRatio = (float) xcor/2876;//TODO remove hard coded values
 
-                //System.out.println(xcorRatio +"RATIOTATI~~~~~~~~~~~~~~~~~~~~~RATIO");
-                //double ycorRatio = ycor/1692;
                 float ycorRatio = (float) ycor/3437;
 
                 Double xRatio = (double) xcorRatio;
@@ -239,8 +241,7 @@ public class MainActivity extends AppCompatActivity {
 
                 list.set(0, xcor);
                 list.set(1, (ycor));
-                //System.out.println(source + " is equal to " + table.get(i)[0]);
-                //System.out.println(xcor+"_"+ycor);
+
             }
         }
         return list;

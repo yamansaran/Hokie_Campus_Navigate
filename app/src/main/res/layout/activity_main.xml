@@ -5,35 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:orientation="vertical"
     android:background="@color/orange"
     >
 
 
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <!--<com.jsibbold.zoomage.ZoomageView-->
-
-    <!--com.biaszebra.hokiecampusnavigate.MyImageView-->
-
-
     <com.jsibbold.zoomage.ZoomageView
         android:id="@+id/myZoomageView"
-        android:layout_width="416dp"
-        android:layout_height="491dp"
+        android:layout_width="412dp"
+        android:layout_height="420dp"
         android:src="@drawable/vt_campus_map_enlarged"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintHorizontal_bias="0.559"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
@@ -48,60 +32,80 @@
 
         />
 
-    <TextView
-        android:id="@+id/pathView"
-        android:layout_width="281dp"
-        android:layout_height="129dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/sendIt"
         android:layout_width="88dp"
         android:layout_height="86dp"
+        android:backgroundTint="@color/maroon"
         android:onClick="onBtnClick"
         android:text="Hokie\nPath!"
         android:theme="@style/Button.Maroon"
-        android:backgroundTint="@color/maroon"
+        app:iconTint="#000000"
         app:layout_constraintBottom_toTopOf="@+id/myZoomageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.05" />
 
-    <EditText
-        android:id="@+id/location"
-        android:layout_width="198dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="28dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="Where are you?"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/myZoomageView"
+
+    <!--        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"-->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dropdown1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="230dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@id/myZoomageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toEndOf="@+id/sendIt"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.05">
 
-    <EditText
-        android:id="@+id/destination"
-        android:layout_width="198dp"
-        android:layout_height="42dp"
-        android:ems="10"
-        android:hint="Where are you headed?"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/myZoomageView"
+        <AutoCompleteTextView
+            android:id="@+id/value1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="23dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dropdown2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+        android:layout_width="230dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@id/myZoomageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toEndOf="@+id/sendIt"
-        app:layout_constraintTop_toBottomOf="@+id/location"
-        app:layout_constraintVertical_bias="0.017" />
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dropdown1"
+        app:layout_constraintVertical_bias="0.1">
+
+        <AutoCompleteTextView
+            android:id="@+id/value2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:inputType="text"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/dropdown2"
+            app:layout_constraintTop_toTopOf="@+id/dropdown2"
+            tools:layout_editor_absoluteX="23dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
