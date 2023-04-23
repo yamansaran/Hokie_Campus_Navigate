@@ -17,15 +17,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
-import android.widget.TextView;
+
 import android.widget.Toast;
 
 
-import com.google.android.material.textfield.TextInputLayout;
+
 import com.jsibbold.zoomage.ZoomageView;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
             case R.id.item1:
-                Toast.makeText(this, "Item 1 selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Options menu not implemented yet!", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.item2:
 
@@ -87,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
         hurry = !hurry;
     }
 
-    private int coreXDim = 2876;//TODO remove hard coding
-    private int coreYDim = 3437;
+    private final int coreXDim = 2876;//TODO remove hard coding
+    private final int coreYDim = 3437;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,9 +95,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         setContentView(R.layout.activity_main);
         Resources res = getResources();
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, res.getStringArray(R.array.completion));
         AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.value1);
         textView.setAdapter(adapter);
+
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, res.getStringArray(R.array.completion));
         AutoCompleteTextView textView2 = (AutoCompleteTextView) findViewById(R.id.value2);
         textView2.setAdapter(adapter);
@@ -108,14 +109,9 @@ public class MainActivity extends AppCompatActivity {
         ZoomageView customView = findViewById(R.id.myZoomageView);
         TestWithSampleGraph runner = new TestWithSampleGraph();//create path generator
 
-
-
-
         AutoCompleteTextView locationText =findViewById(R.id.value1);
         AutoCompleteTextView destinationText =findViewById(R.id.value2);
 
-        //String locationString = location.getText().toString();
-        //String destinationString = destination.getText().toString();
         String locationString = locationText.getText().toString();
         String destinationString = destinationText.getText().toString();
 
@@ -168,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
         Paint p = new Paint();//route paint, edit here
         p.setColor(Color.RED);
-        p.setStrokeWidth(8);
+        p.setStrokeWidth(6);
 
         Paint explorer = new Paint();//TODO remove explorer line
         explorer.setColor(Color.BLACK);
@@ -204,6 +200,8 @@ public class MainActivity extends AppCompatActivity {
         returnCor("A", table);
         customView.setImageDrawable(new BitmapDrawable(getResources(), tempBitmap));
     }
+        locationText.getText().clear();
+        destinationText.getText().clear();
     }
 
     public Double doubleDivision(Double x, Double y) {//real division
