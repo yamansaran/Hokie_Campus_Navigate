@@ -6,42 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="@color/orange"
+
     >
 
 
     <!--        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"-->
-
-    <com.jsibbold.zoomage.ZoomageView
-        android:id="@+id/myZoomageView"
-        android:layout_width="406dp"
-        android:layout_height="480dp"
-        android:src="@drawable/vt_campus_map_enlarged"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:zoomage_animateOnReset="true"
-        app:zoomage_autoCenter="true"
-        app:zoomage_autoResetMode="UNDER"
-        app:zoomage_maxScale="8"
-        app:zoomage_minScale="0.6"
-        app:zoomage_restrictBounds="true"
-        app:zoomage_translatable="true"
-
-        app:zoomage_zoomable="true" />
-
+    <!--android:backgroundTint="@color/maroon"       app:iconTint="#000000"-->
     <Button
-        android:id="@+id/sendIt"
+
+    android:id="@+id/sendIt"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:backgroundTint="@color/maroon"
+
         android:onClick="onBtnClick"
         android:textSize="11sp"
         android:text="Hokie\nPath!"
         android:theme="@style/Button.Maroon"
-        app:iconTint="#000000"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/myZoomageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
@@ -129,6 +110,26 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/sendIt"
         app:layout_constraintTop_toBottomOf="@+id/dropdown1" />
+
+    <com.jsibbold.zoomage.ZoomageView
+        android:id="@+id/myZoomageView"
+        android:layout_width="406dp"
+        android:layout_height="480dp"
+        android:src="@drawable/vt_campus_map_enlarged"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:zoomage_animateOnReset="true"
+        app:zoomage_autoCenter="true"
+        app:zoomage_autoResetMode="UNDER"
+        app:zoomage_maxScale="8"
+        app:zoomage_minScale="0.6"
+        app:zoomage_restrictBounds="true"
+        app:zoomage_translatable="true"
+
+        app:zoomage_zoomable="true" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
