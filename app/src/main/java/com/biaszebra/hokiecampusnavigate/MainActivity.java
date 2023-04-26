@@ -33,7 +33,10 @@ import java.util.Scanner;
 
 
 //TODO change table file to relative units
-//TODO background!!!!
+//TODO add labeled map mode
+//TODO add bu stops
+//TODO add group edge interpolation
+//TODO add language module
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,12 +78,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
     public void accessibilityMode() throws IOException {
        accessibility = !accessibility;
-
     }
     public void hurryMode(){
         hurry = !hurry;

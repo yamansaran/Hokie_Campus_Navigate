@@ -37,41 +37,26 @@ import java.util.List;
 public class TestWithSampleGraph {
 
   public String startRun(String one , String two, InputStream is){
-
-
     CSVReader csvReader = new CSVReader(is);
     csvReader.CSVIni();
-
-
     ValueGraph<String, Integer> graph = createSampleGraph(csvReader);
-
-
-
     List<String> temp = sendShortestPath(graph, one,two);
     String tempString = temp.toString();
-
  return tempString;
   }
-
   public ArrayList<String> getTable(){
       ArrayList<String> table = new ArrayList<String>();
-
-
       return table;
   }
-
   private static void findAndPrintShortestPath(
           ValueGraph<String, Integer> graph, String source, String target) {
     List<String> shortestPath = DijkstraWithPriorityQueue.findShortestPath(graph, source, target);
-    //System.out.printf("shortestPath from %s to %s = %s%n", source, target, shortestPath);
   }
   private static List<String> sendShortestPath(
           ValueGraph<String, Integer> graph, String source, String target) {
     List<String> shortestPath = DijkstraWithPriorityQueue.findShortestPath(graph, source, target);
     return shortestPath;
   }
-
-
   private static ValueGraph<String, Integer> createSampleGraph(CSVReader reader){//overloaded method with csv reader
     MutableValueGraph<String,Integer> graph = ValueGraphBuilder.undirected().build();
     for(int i = 0; i< reader.entries;i++) {
