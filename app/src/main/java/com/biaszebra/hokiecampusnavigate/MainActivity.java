@@ -32,9 +32,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-//TODO change table file to relative units
+//TODO change tableFile to relative units
 //TODO add labeled map mode
-//TODO add bu stops
 //TODO add group edge interpolation
 //TODO add language module
 
