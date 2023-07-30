@@ -1,3 +1,45 @@
+Data And Decision Sciences,695,452
+Goodwin Hall,996,263
+Surge Space Building,1496,121
+Durham Hall,1387,433
+Whittermore Hall,1245,590
+Perry Street Lot 1,925,541
+Undergrad Science Lab,711,834
+Classroom Building,795,965
+Hitt Hall,946,956
+Bishop-Favrao Hall,1056,801
+Derring Hall, 1023,1031
+Cowgill Hall,1198,832
+Hancock Hall,1259,732
+Randolph Hall, 1409,719
+Lavery Hall,1555,530
+Kelly Hall, 1620,484
+Military Building,1782,399
+Old Security Building,1772,471
+Hahn Hall,940,1200
+Roberson Hall,1106,1246
+Pamplin Hall, 1204,1127
+Johnston Student Center, 1230,990
+Burruss Hall, 1386,1016
+Norris Hall,1491,843
+Holden Hall,1611,747
+McBird,1743,676
+Major Williams Hall,1920,581
+Corps Leadership and Military Science Building,1948,412
+Shanks Hall, 2081,420
+Moss Arts Center,2378,391
+Lane Hall,2108,606
+Pearson Hall West,2064,769
+Pearson Hall East,2292,604
+Torgerson Hall,2292,604
+Davidson Hall,1142,1482
+Williams Hall,1275,1297
+Wright House,941,1539
+Patton Hall,1667,985
+Newman Library,2221,1092
+Squires Student Center,2439,907
+Upper Quad Residence Hall,1812,538
+Henderson Hall,2635,746
 Fork1,456,473
 Fork2,634,376
 Fork3,848,250
@@ -75,6 +117,17 @@ R68,2784,466
 R69,2840,715
 R70,2657,858
 R71,2479,156
+R72,2146,656
+R73,2166,511
+R74,2021,512
+R75,2006,640
+R76,2080,721
+R77,1977,569
+R78,2109,463
+R79,2231,604
+R80,1917,498
+R81,1977,464
+R82,2076,334
 Goodwin3,971,225
 Goodwin2,1083,203
 Goodwin1,1041,291
@@ -120,7 +173,7 @@ Randolph3,1312,670
 Hancock1,1360,856
 Cowgill1,1226,853
 Cowgill2,1159,864
-Burchard1,1261,897
+Burchard,1261,897
 Hahn1,886,1184
 Hahn2,981,1219
 Hahn3,941,1246
@@ -148,12 +201,19 @@ McBryde2,1813,680
 McBryde3,1731,749
 McBryde4,1744,596
 McBryde5,1665,665
+Lane1,2114,564
+Lane2,2162,593
+Lane3,2124,626
+Lane4,2087,654
 Surge1,1483,159
 Surge2,1614,137
 Patton1,1647,964
 Patton2,1721,937
 Patton3,1684,1004
 Patton4,1604,1030
+Roberson4,1061,1249
+Roberson5,1105,1215
+Roberson6,1228,1321
 Williams1,1299,1312
 Williams2,1293,1229
 Williams3,1259,1286
@@ -172,6 +232,8 @@ PearsonW2,2112,788
 PearsonE1,2244,679
 PearsonE2,2292,640
 PearsonE3,2237,511
+PearsonE4,2192,537
+PearsonE5,2256,614
 MWilliams1,1877,574
 MWilliams2,1907,610
 MWilliams3,1960,649
