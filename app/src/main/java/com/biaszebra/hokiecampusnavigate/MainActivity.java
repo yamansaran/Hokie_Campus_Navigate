@@ -40,6 +40,8 @@ import java.util.Scanner;
 public class MainActivity extends AppCompatActivity {
 
     boolean accessibility = false;
+
+    boolean map = false;
     boolean hurry = false;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -156,9 +158,15 @@ public class MainActivity extends AppCompatActivity {
         testTest = testTest.replaceAll("\\s", "");//filter output path
         testTest = testTest.replaceAll("\\[", "");
         testTest = testTest.replaceAll("\\]", "");
+        Bitmap newBitmap;
+        if(!map) {
+            newBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vt_campus_map_enlarged);//replacing image with copy image that will be painted on
+        }
+        else{
+            newBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vt_campus_map_enlarged_named);
+        }
 
 
-        Bitmap newBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vt_campus_map_enlarged);//replacing image with copy image that will be painted on
         Bitmap myBitmap = Bitmap.createScaledBitmap(newBitmap, customView.getWidth(), customView.getHeight(), true);//I do not know why this is here, but it wont work without  copy of a copy
         Bitmap tempBitmap = myBitmap.copy(myBitmap.getConfig(), true);//copy as previous bitmaps are immutable
         Canvas tempCanvas = new Canvas(tempBitmap);
