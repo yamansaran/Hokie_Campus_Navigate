@@ -18,7 +18,7 @@
         app:showAsAction="never"/>
 
     <item android:id="@+id/item4"
-        android:title="In A Hurry Mode"
+        android:title="Labeled Map"
         app:showAsAction="never"/>
 
 

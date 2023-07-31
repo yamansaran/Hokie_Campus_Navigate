@@ -50,6 +50,47 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+
+    public void accessibilityMode() throws IOException {
+       accessibility = !accessibility;
+    }
+    public void hurryMode(){
+        hurry = !hurry;
+    }
+
+    public void labelMode() {map = !map;}
+
+    private final int coreXDim = 2876;//TODO remove hard coding
+    private final int coreYDim = 3437;
+
+    public Bitmap BitmapMaker(boolean map){
+        Bitmap newBitmap;
+        if(!map) {
+            newBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vt_campus_map_enlarged);//replacing image with copy image that will be painted on
+        }
+        else{
+            newBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vt_campus_map_enlarged_named);
+        }
+        return newBitmap;
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle("");
+        setContentView(R.layout.activity_main);
+        Resources res = getResources();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, res.getStringArray(R.array.completion));
+        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.value1);
+        textView.setAdapter(adapter);
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, res.getStringArray(R.array.completion));
+        AutoCompleteTextView textView2 = (AutoCompleteTextView) findViewById(R.id.value2);
+        textView2.setAdapter(adapter);
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){
@@ -82,41 +123,15 @@ public class MainActivity extends AppCompatActivity {
             case R.id.item4:
                 labelMode();
                 if(map) {
-                Toast.makeText(this,  "Map labels enabled", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this, " Map labels disabled", Toast.LENGTH_SHORT).show();
-            }
-            return true;
+                    Toast.makeText(this,  "Map labels enabled", Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(this, " Map labels disabled", Toast.LENGTH_SHORT).show();
+
+                }
+                return true;
         }
     }
-    public void accessibilityMode() throws IOException {
-       accessibility = !accessibility;
-    }
-    public void hurryMode(){
-        hurry = !hurry;
-    }
-
-    public void labelMode() {map = !map;}
-
-    private final int coreXDim = 2876;//TODO remove hard coding
-    private final int coreYDim = 3437;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("");
-        setContentView(R.layout.activity_main);
-        Resources res = getResources();
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, res.getStringArray(R.array.completion));
-        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.value1);
-        textView.setAdapter(adapter);
-
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, res.getStringArray(R.array.completion));
-        AutoCompleteTextView textView2 = (AutoCompleteTextView) findViewById(R.id.value2);
-        textView2.setAdapter(adapter);
-    }
-
     public void onBtnClick(View view) {
         ZoomageView customView = findViewById(R.id.myZoomageView);
         TestWithSampleGraph runner = new TestWithSampleGraph();//create path generator
@@ -132,7 +147,12 @@ public class MainActivity extends AppCompatActivity {
         boolean loc = !doesExist(locationString);
         boolean dest = !doesExist(destinationString);
 
-        if(loc||dest){
+
+        if(locationString == "" && destinationString == ""){
+            Bitmap tempBitmap = BitmapMaker(map);
+            customView.setImageDrawable(new BitmapDrawable(getResources(), tempBitmap));
+        }
+        else if(loc||dest){
 
             Toast.makeText(this, "That location doesn not exist!", Toast.LENGTH_SHORT).show();
         }else{
@@ -168,14 +188,7 @@ public class MainActivity extends AppCompatActivity {
         testTest = testTest.replaceAll("\\s", "");//filter output path
         testTest = testTest.replaceAll("\\[", "");
         testTest = testTest.replaceAll("\\]", "");
-        Bitmap newBitmap;
-        if(!map) {
-            newBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vt_campus_map_enlarged);//replacing image with copy image that will be painted on
-        }
-        else{
-            newBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.vt_campus_map_enlarged_named);
-        }
-
+        Bitmap newBitmap = BitmapMaker(map);
 
         Bitmap myBitmap = Bitmap.createScaledBitmap(newBitmap, customView.getWidth(), customView.getHeight(), true);//I do not know why this is here, but it wont work without  copy of a copy
         Bitmap tempBitmap = myBitmap.copy(myBitmap.getConfig(), true);//copy as previous bitmaps are immutable
