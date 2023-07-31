@@ -3,15 +3,49 @@
 
     <string-array
         name="completion">
-        <item>McComas</item>
+        <item>Data And Decision Sciences</item>
+        <item>Goodwin Hall</item>
+        <item>Surge Space Building</item>
+        <item>Durham Hall</item>
+        <item>Whittermore Hall</item>
+        <item>Perry Street Lot 1</item>
+        <item>Undergrad Science Lab</item>
+        <item>Classroom Building</item>
+        <item>Hitt Hall</item>
+        <item>Bishop-Favrao Hall</item>
+        <item>Derring Hall</item>
+        <item>Cowgill Hall</item>
+        <item>Hancock Hall</item>
+        <item>Randolph Hall</item>
+        <item>Lavery Hall</item>
+        <item>Kelly Hall</item>
+        <item>Military Building</item>
+        <item>Old Security Building</item>
+        <item>Hahn Hall</item>
+        <item>Roberson Hall</item>
+        <item>Pamplin Hall</item>
+        <item>Johnston Student Center</item>
+        <item>Burruss Hall</item>
+        <item>Norris Hall</item>
+        <item>Holden Hall</item>
         <item>McBird</item>
-        <item>Godwin</item>
-        <item>Randolf</item>
-        <item>Holden</item>
-        <item>Perry Lot 1</item>
-        <item>Perry Lot 2</item>
-        <item>Perry Lot 3</item>
-        <item>Surge</item>
+        <item>Major Williams Hall</item>
+        <item>Corps Leadership and Military Science Building</item>
+        <item>Shanks Hall</item>
+        <item>Moss Arts Center</item>
+        <item>Lane Hall</item>
+        <item>Pearson Hall West</item>
+        <item>Pearson Hall East</item>
+        <item>Torgerson Hall</item>
+        <item>Davidson Hall</item>
+        <item>Williams Hall</item>
+        <item>Wright House</item>
+        <item>Patton Hall</item>
+        <item>Newman Library</item>
+        <item>Squires Student Center</item>
+        <item>Upper Quad Residence Hall</item>
+        <item>Henderson Hall</item>
+
 
     </string-array>
 

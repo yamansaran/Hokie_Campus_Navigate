@@ -1,45 +1,45 @@
-Data And Decision Sciences,695,452
-Goodwin Hall,996,263
-Surge Space Building,1496,121
-Durham Hall,1387,433
-Whittermore Hall,1245,590
-Perry Street Lot 1,925,541
-Undergrad Science Lab,711,834
-Classroom Building,795,965
-Hitt Hall,946,956
-Bishop-Favrao Hall,1056,801
-Derring Hall, 1023,1031
-Cowgill Hall,1198,832
-Hancock Hall,1259,732
-Randolph Hall, 1409,719
-Lavery Hall,1555,530
-Kelly Hall, 1620,484
-Military Building,1782,399
-Old Security Building,1772,471
-Hahn Hall,940,1200
-Roberson Hall,1106,1246
-Pamplin Hall, 1204,1127
-Johnston Student Center, 1230,990
-Burruss Hall, 1386,1016
-Norris Hall,1491,843
-Holden Hall,1611,747
+DataAndDecisionSciences,695,452
+GoodwinHall,996,263
+SurgeSpaceBuilding,1496,121
+DurhamHall,1387,433
+WhittermoreHall,1245,590
+PerryStreetLot1,925,541
+UndergradScienceLab,711,834
+ClassroomBuilding,795,965
+HittHall,946,956
+Bishop-FavraoHall,1056,801
+DerringHall,1023,1031
+CowgillHall,1198,832
+HancockHall,1259,732
+RandolphHall,1409,719
+LaveryHall,1555,530
+KellyHall,1620,484
+MilitaryBuilding,1782,399
+OldSecurityBuilding,1772,471
+HahnHall,940,1200
+RobersonHall,1106,1246
+PamplinHall,1204,1127
+JohnstonStudentCenter,1230,990
+BurrussHall,1386,1016
+NorrisHall,1491,843
+HoldenHall,1611,747
 McBird,1743,676
-Major Williams Hall,1920,581
-Corps Leadership and Military Science Building,1948,412
-Shanks Hall, 2081,420
-Moss Arts Center,2378,391
-Lane Hall,2108,606
-Pearson Hall West,2064,769
-Pearson Hall East,2292,604
-Torgerson Hall,2292,604
-Davidson Hall,1142,1482
-Williams Hall,1275,1297
-Wright House,941,1539
-Patton Hall,1667,985
-Newman Library,2221,1092
-Squires Student Center,2439,907
-Upper Quad Residence Hall,1812,538
-Henderson Hall,2635,746
+MajorWilliamsHall,1920,581
+CorpsLeadershipandMilitaryScienceBuilding,1948,412
+ShanksHall,2081,420
+MossArtsCenter,2378,391
+LaneHall,2108,606
+PearsonHallWest,2064,769
+PearsonHallEast,2292,604
+TorgersonHall,2292,604
+DavidsonHall,1142,1482
+WilliamsHall,1275,1297
+WrightHouse,941,1539
+PattonHall,1667,985
+NewmanLibrary,2221,1092
+SquiresStudentCenter,2439,907
+UpperQuadResidenceHall,1812,538
+HendersonHall,2635,746
 Fork1,456,473
 Fork2,634,376
 Fork3,848,250
@@ -183,7 +183,7 @@ Hahn6,1126,1322
 Pamplin1,1151,1165
 Pamplin2,1181,1196
 Johnston1,1219,947
-Johnston2,1284,1020,also bursur
+Johnston2,1284,1020,alsobursur
 Burruss1,1403,935
 Burruss2,1476,1010
 Burruss3,1462,1112

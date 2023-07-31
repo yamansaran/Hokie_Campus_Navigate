@@ -113,7 +113,9 @@ public class MainActivity extends AppCompatActivity {
         AutoCompleteTextView destinationText =findViewById(R.id.value2);
 
         String locationString = locationText.getText().toString();
+        locationString = locationString.replaceAll("\\s", "");
         String destinationString = destinationText.getText().toString();
+        destinationString = destinationString.replaceAll("\\s", "");
 
         boolean loc = !doesExist(locationString);
         boolean dest = !doesExist(destinationString);
@@ -170,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         explorer.setColor(Color.BLACK);
         explorer.setStrokeWidth(3);
 
-
+        System.out.println("DEBUG"+testTest);
         String[] res = testTest.split("[,]", 0);//array of steps along path
 
         for (int i = 0; i < res.length; i++) {//loop to paint lines along map
@@ -178,11 +180,13 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
                 ArrayList<Integer> coorCurrent = returnCor(res[i], table);
+                System.out.println("DEBUG"+coorCurrent);
                 ArrayList<Integer> coorNext = returnCor(res[i + 1], table);
                 int xdim = tempBitmap.getWidth();
                 int ydim = tempBitmap.getHeight();
 
                 int xCur = (int) (coorCurrent.get(0));//paint start and end point
+                System.out.println("DEBUG"+xCur);
                 int yCur = (int) (coorCurrent.get(1));
                 int xNext = (int) (coorNext.get(0));
                 int yNext = (int) (coorNext.get(1));
@@ -192,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
                 xNext = scalingMod(coreXDim, xdim, xNext);
                 yNext = scalingMod(coreYDim, ydim, yNext);
 
+                System.out.println("From "+ xCur +" " + yCur + " To "+xNext + " "+yNext);
                 tempCanvas.drawLine(xCur, yCur, xNext, yNext, p);
                 tempCanvas.drawCircle((float)xNext,(float)yNext,(float)3,p);
             }
