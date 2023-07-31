@@ -17,5 +17,9 @@
         android:title="In A Hurry Mode"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/item4"
+        android:title="In A Hurry Mode"
+        app:showAsAction="never"/>
+
 
 </menu>

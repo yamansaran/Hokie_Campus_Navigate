@@ -79,6 +79,14 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+            case R.id.item4:
+                labelMode();
+                if(map) {
+                Toast.makeText(this,  "Map labels enabled", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this, " Map labels disabled", Toast.LENGTH_SHORT).show();
+            }
+            return true;
         }
     }
     public void accessibilityMode() throws IOException {
@@ -87,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
     public void hurryMode(){
         hurry = !hurry;
     }
+
+    public void labelMode() {map = !map;}
 
     private final int coreXDim = 2876;//TODO remove hard coding
     private final int coreYDim = 3437;
